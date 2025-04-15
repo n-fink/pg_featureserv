@@ -284,6 +284,7 @@ func writeHTML(w http.ResponseWriter, content interface{}, context interface{}, 
 
 func writeResponse(w http.ResponseWriter, contype string, encodedContent []byte) *appError {
 	w.Header().Set("Content-Type", contype) //api.ContentType(format))
+	w.Header().Set("Cache-Control", "public, max-age=120")
 	w.WriteHeader(http.StatusOK)
 	_, err := w.Write(encodedContent)
 	if err != nil {
